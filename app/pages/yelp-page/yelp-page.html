@@ -1,0 +1,40 @@
+<ion-navbar *navbar>
+    <ion-title>Yelp</ion-title>
+</ion-navbar>
+
+
+<ion-content padding class="page4">
+    <ion-list>     
+        <ion-item-sliding *ngFor="let cafe of businesses | async">
+            <ion-item (click)="openMap(cafe)">
+                <ion-thumbnail item-left>
+                    <img [src]="cafe.image_url">
+                </ion-thumbnail>
+                <h2>{{cafe.name}}</h2>
+                <p>
+                    <span>
+						<ion-icon name="navigate"></ion-icon>
+						{{cafe.distance | number:'1.0-0'}}m</span >
+				</p >
+				<p >
+					<i class="ion ion-ios-location" ></i >
+					{{cafe.location.display_address}}
+				</p >
+				<p >
+					<span >
+						<i class="ion ion-star" ></i >
+						{{cafe.rating}}</span >
+					<span >
+						<i class="ion ion-person" ></i >
+						{{cafe.review_count}}</span >
+				</p >
+			</ion-item >
+            <ion-item-options>
+                <button primary>
+                    <ion-icon name="map"></ion-icon>
+                        Direction
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+	</ion-list >
+</ion-content>
