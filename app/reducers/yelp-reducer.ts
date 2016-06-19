@@ -4,7 +4,7 @@ let initialState = {
         'page': 1,
 		'isLoading': false,
 		'hasMore': true,
-		'results': [],
+		'results': {},
 		'lat': 0,
 		'lon': 0
     }

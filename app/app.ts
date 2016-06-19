@@ -3,10 +3,9 @@ import {Component} from '@angular/core';
 import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
-import {NgRedux} from 'ng2-redux';
-const reduxLogger: any = require('redux-logger');
 
-import {rootReducer} from './reducers/root-reducer';
+import {NgRedux} from 'ng2-redux';
+import {Store} from './store/configure-store';
 
 
 @Component({
@@ -16,15 +15,8 @@ export class MyApp {
 
   private rootPage: any;
 
-  constructor(private platform: Platform, private ngRedux: NgRedux<any>) {
+  constructor(private platform: Platform, private store:Store) {
     this.rootPage = TabsPage;
-    //Configure store
-    this.ngRedux.configureStore(rootReducer,
-      {}, // Inital State
-      [
-        reduxLogger()
-      ]);
-
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -33,4 +25,4 @@ export class MyApp {
   }
 }
 
-ionicBootstrap(MyApp, [NgRedux])
+ionicBootstrap(MyApp, [NgRedux, Store])
